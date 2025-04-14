@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HOME</title>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background-color:#FFD87C;
+    }
+
+    #ghibli-leaves {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .whole {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+      z-index: 1; /* above particle canvas */
+      padding: 10px;
+    }
+
+    .greetings {
+      color: #475841;
+      font-size: 5vw; /* Adjust font size relative to viewport width */
+      font-family: "Shadows Into Light", cursive;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .icons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .icon {
+      width: 8vw; /* Use relative width for mobile responsiveness */
+      max-width: 40px; /* Prevent icons from growing too large */
+    }
+
+    /* Water animation */
+    #water-animation {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      z-index: 2; /* above other content */
+      overflow: hidden;
+    }
+
+    #water-animation svg {
+      position: absolute;
+      width: 200%; /* make it twice as wide to make the wave go out of the viewport */
+      height: 100%;
+      animation: waveMovement 6s linear infinite;
+    }
+
+    /* Create the continuous animation effect */
+    @keyframes waveMovement {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%); /* move it by 50% of its width */
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .greetings {
+        font-size: 6vw; /* Make the text smaller on small screens */
+      }
+
+      .icon {
+        width: 12vw; /* Make icons larger on small screens */
+      }
+    }
+
+    #loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f0f0f0; /* Or a moody Ghibli grey-green */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+#ghibli-loader {
+  width: 150px;
+  height: auto;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Optional float animation */
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body>
+    <div id="loader">
+        <img src="ghibli.gif" alt="Loading..." id="ghibli-loader">
+      </div>
+  <!-- particle background -->
+  <div id="ghibli-leaves"></div>
+
+  <!-- your main content -->
+  <div class="whole">
+    <div class="greetings">Greeting! Kinjal here...</div>
+    <div class="icons">
+      <a href="https://github.com/choudharysxc"><img class="icon" src="github.png" alt="GitHub"></a>
+      <a href="https://www.linkedin.com/in/kinjal-choudhary-969561250/"><img class="icon" src="linkedin.png" alt="LinkedIn"></a>
+    </div>
+  </div>
+
+  <!-- Water animation at the bottom -->
+  <div id="water-animation">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <defs>
+        <filter id="blur">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+        </filter>
+      </defs>
+      <path fill="#a0dfe3" filter="url(#blur)" d="M0,160 C360,240 1080,80 1440,160 L1440,320 L0,320 Z"></path>
+    </svg>
+  </div>
+
+  <script>
+    // Array of image sources
+    const images = [
+      "a.png", // image 1
+      "b.png", // image 2
+      "c.png", // image 3
+      "d.png"  // image 4
+    ];
+
+    particlesJS("ghibli-leaves", {
+      "particles": {
+        "number": {
+          "value": 12,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "shape": {
+          "type": "image",
+          "image": {
+            "src": images[Math.floor(Math.random() * images.length)], // Randomly select an image from the array
+            "width": 25,
+            "height": 32
+          }
+        },
+        "opacity": {
+          "value": 0.8,
+          "random": true
+        },
+        "size": {
+          "value": 25,
+          "random": true
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.2,
+          "direction": "bottom",
+          "random": true,
+          "straight": false,
+          "out_mode": "out"
+        },
+        "links": {
+          "enable": false, // Disable particle links (connections between particles)
+          "distance": 200,  // Optional: You can adjust the max distance at which particles should connect (though this will be ignored with 'enable: false')
+          "color": "#ffffff",
+          "opacity": 0.5,
+          "width": 1
+        },
+        "line_linked": {
+          "enable": false // Disable line linking between particles
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": false
+          },
+          "onclick": {
+            "enable": false
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 500); // Allow the fade-out transition
+  }, 5000); // 5 seconds buffer before fade-out starts
+});
+
+  </script>
+</body>
+</html>
