@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Blogs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background-color:#FFD87C;
+}
+
+#ghibli-leaves {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.whole {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  z-index: 1; /* above particle canvas */
+  padding: 10px;
+}
+
+.greetings {
+  color: #475841;
+  font-size: 5vw; /* Adjust font size relative to viewport width */
+  font-family: "Shadows Into Light", cursive;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.icons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.icon {
+  width: 8vw; /* Use relative width for mobile responsiveness */
+  max-width: 40px; /* Prevent icons from growing too large */
+}
+
+/* Water animation */
+#water-animation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  z-index: 2; /* above other content */
+  overflow: hidden;
+}
+
+#water-animation svg {
+  position: absolute;
+  width: 200%; /* make it twice as wide to make the wave go out of the viewport */
+  height: 100%;
+  animation: waveMovement 6s linear infinite;
+}
+
+/* Create the continuous animation effect */
+@keyframes waveMovement {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* move it by 50% of its width */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .greetings {
+    font-size: 6vw; /* Make the text smaller on small screens */
+  }
+
+  .icon {
+    width: 12vw; /* Make icons larger on small screens */
+  }
+}
+
+#loader {
+position: fixed;
+top: 0;
+left: 0;
+height: 100vh;
+width: 100vw;
+background-color: #f0f0f0; /* Or a moody Ghibli grey-green */
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 9999;
+transition: opacity 0.5s ease;
+}
+
+#ghibli-loader {
+width: 150px;
+height: auto;
+animation: float 2s ease-in-out infinite;
+}
+
+/* Optional float animation */
+@keyframes float {
+0%   { transform: translateY(0); }
+50%  { transform: translateY(-15px); }
+100% { transform: translateY(0); }
+}
+    </style>
+</head>
+<body>
+    <div class="greetings">Blogggggggg-------</div>
+    <center><list class="greetings">
+        <ul><a href="1st_blog.html" style="text-decoration: none; color:#475841">1 . Rant</ul>
+    </list></center>
+
+    <div id="water-animation">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <defs>
+            <filter id="blur">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+            </filter>
+          </defs>
+          <path fill="#a0dfe3" filter="url(#blur)" d="M0,160 C360,240 1080,80 1440,160 L1440,320 L0,320 Z"></path>
+        </svg>
+      </div>
+    
+</body>
+</html>
