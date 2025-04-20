@@ -118,7 +118,7 @@ body::before {
 now = datetime.now()
 timestamp = now.strftime("%Y-%m-%d ~ %H:%M:%S")
 
-if not os.path.exists(file_name):
+if not os.path.exists(f"Blog/{file_name}"):
     with open(file_name, 'w+') as file:
         file.write(f"""<!DOCTYPE html>
 <html lang="en">
